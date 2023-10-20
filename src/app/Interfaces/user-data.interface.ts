@@ -1,4 +1,4 @@
-export interface UserData{
+export interface UserData {
   email: string,
   username: string,
   localId: string,

@@ -75,20 +75,24 @@
     }
   }
 }
-.form-group{
+
+.form-group {
   align-items: center;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.label{
+
+.label {
   width: 75%;
   text-align: start;
 }
-.error-message{
+
+.error-message {
   color: red;
   text-align: center;
 }
+
 @media only screen and (max-width: 800px) {
   .box {
     &-login {

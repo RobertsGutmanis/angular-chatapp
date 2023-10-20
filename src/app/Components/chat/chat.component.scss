@@ -1,14 +1,15 @@
-.container{
+.container {
   display: flex;
 }
-.left-panel{
+
+.left-panel {
   padding: 15px;
   overflow-y: auto;
   width: 25%;
   height: 100vh;
   background-color: #212529;
 
-  &-search{
+  &-search {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,13 +17,14 @@
     padding: 15px 0;
     border-bottom: 1px solid lightgray;
 
-    &-inputs{
+    &-inputs {
       width: 100%;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
     }
   }
+
   &-input {
     background-color: #495057;
     border-radius: 4px;
@@ -37,7 +39,7 @@
     }
   }
 
-  &-user{
+  &-user {
     padding-bottom: 10px;
     width: 100%;
     border-bottom: 1px solid lightgray;
@@ -46,55 +48,63 @@
     flex-wrap: wrap;
   }
 
-  &-rooms{
+  &-rooms {
     height: 80%;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
       display: none;
     }
   }
 }
-.small-menu{
+
+.small-menu {
   display: none;
 }
-.btn{
+
+.btn {
   border: none;
   padding: 6px 25px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
   transition: all .3s;
+
   &-logout {
     background-color: #9d0208;
     height: 80%;
-    &-top{
+
+    &-top {
       margin-top: 5px;
       width: 30%;
     }
   }
-  &-join{
+
+  &-join {
     background-color: #2d6a4f;
     width: 30%;
-    &-top{
+
+    &-top {
       margin-top: 5px;
     }
   }
 
-  &:hover{
+  &:hover {
     filter: brightness(90%);
   }
 
 }
-.chat{
+
+.chat {
   width: 75%;
   display: flex;
   height: 100vh;
   flex-direction: column;
   position: relative;
 
-  &-no-room{
+  &-no-room {
     width: 100%;
     height: 100%;
     display: flex;
@@ -102,16 +112,17 @@
     justify-content: center;
     flex-direction: column;
 
-    &-text{
+    &-text {
       font-weight: bold;
       font-size: 400%;
-      &-bold{
+
+      &-bold {
         color: #2d6a4f;
       }
     }
   }
 
-  &-info{
+  &-info {
     width: 100%;
     text-align: center;
     padding: 10px;
@@ -121,7 +132,8 @@
     font-weight: bold;
     font-size: 110%;
   }
-  &-area{
+
+  &-area {
     overflow-x: hidden;
     overflow-y: scroll;
     //margin-bottom: 10px;
@@ -129,7 +141,8 @@
     display: flex;
     flex-direction: column;
   }
-  &-box{
+
+  &-box {
     background-color: #1b2021;
     width: 100%;
     height: 8%;
@@ -138,7 +151,8 @@
     justify-content: space-around;
   }
 }
-.text-input{
+
+.text-input {
   padding-left: 10px;
   width: 85%;
   margin-left: 10px;
@@ -146,16 +160,19 @@
   background-color: #495057;
   border-radius: 4px;
   border: 1px solid black;
+
   &:focus {
     outline: none;
     background-color: #495057;
   }
-  &-btn{
+
+  &-btn {
     width: 10%;
     height: 55%;
   }
 }
-.room{
+
+.room {
   display: flex;
   justify-content: space-between;
   background-color: #495057;
@@ -165,22 +182,27 @@
   margin: 15px 0;
   box-shadow: 0px 0px 2px 0px black;
   transition: all .3s;
-  &:hover{
+
+  &:hover {
     transform: scale(1.01);
     filter: brightness(90%);
   }
 }
-.error-text{
+
+.error-text {
   color: red;
 }
-.messages{
+
+.messages {
   width: 100%;
   display: grid;
-  &:last-child{
+
+  &:last-child {
     margin-bottom: 10px;
   }
 }
-.message{
+
+.message {
   justify-self: flex-start;
   display: inline-block;
   padding: 15px;
@@ -190,66 +212,65 @@
   word-wrap: anywhere;
   max-width: 80%;
 
-  &-active{
+  &-active {
     background-color: #2d6a4f;
     justify-self: flex-end;
     border-radius: 15px 0 15px 15px;
   }
 
-  &-sender{
-  font-size: .9rem;
+  &-sender {
+    font-size: .9rem;
   }
-  &-text{
+
+  &-text {
     margin: 2px 0 5px 0;
     font-size: 1.2rem;
   }
-  &-date{
+
+  &-date {
     font-size: .8rem;
   }
 }
+
 @media only screen and (max-width: 1300px) {
-  .left-panel{
+  .left-panel {
     overflow: hidden;
   }
-  .btn-join-top{
+  .btn-join-top {
     width: 100% !important;
   }
-  .btn-join{
+  .btn-join {
     width: 20%;
     margin-right: 10px;
   }
-  .btn-logout-top{
+  .btn-logout-top {
     margin: 3px 0;
     width: 100%;
   }
-  .text-input{
+  .text-input {
     width: 80%;
   }
 }
 
 @media only screen and (max-width: 1080px) {
-  .left-panel{
+  .left-panel {
     display: inline-block;
     width: 100%;
     z-index: 100;
   }
-  .chat{
-    display: inline-block;
-  }
-  .toggleMenu{
+  .toggleMenu {
     display: none !important;
     width: 100%;
     z-index: 50;
   }
-
-
-  .btn-logout-top, .btn-join{
+  .btn-logout-top, .btn-join {
     width: 30vmin !important;
   }
-  .chat{
+  .chat {
     //display: none;
     width: 100%;
-    &-info{
+
+    &-info {
       height: 6%;
       border-bottom: none;
       display: flex;
@@ -257,7 +278,7 @@
       align-items: center;
     }
   }
-  .small-menu{
+  .small-menu {
     display: inline-block;
     position: absolute;
     top: 0;
@@ -269,7 +290,8 @@
     border: none;
     padding: 12px 24px;
     transition: all .3s;
-    &:hover{
+
+    &:hover {
       filter: brightness(90%);
     }
   }

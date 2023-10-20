@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
-import {UserData} from "./Interfaces/user-data.interface";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (!localStorage.getItem("auth")) {
       this.router.navigate(['/auth'])
-    }else{
+    } else {
       this.router.navigate(['/chat'])
     }
   }

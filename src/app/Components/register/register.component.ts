@@ -7,7 +7,7 @@ import {AuthService} from "../../Services/auth.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   registerFormGroup!: FormGroup;
   authError!: string;
 
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit{
       password_conf: new FormControl('', Validators.required),
     })
     this.authService.errorSubject.subscribe({
-      next: (error: string): void=>{
+      next: (error: string): void => {
         this.authError = error
       }
     })
@@ -30,10 +30,10 @@ export class RegisterComponent implements OnInit{
 
   onSubmit(): void {
     const values = this.registerFormGroup.value
-    if(this.registerFormGroup.status !== "INVALID" && values.password === values.password_conf){
+    if (this.registerFormGroup.status !== "INVALID" && values.password === values.password_conf) {
       console.log("registered")
       this.authService.auth({email: values.email, password: values.password}, "signUp", values.username)
-    }else{
+    } else {
       this.authError = "PASSWORDS DON'T MATCH"
     }
   }

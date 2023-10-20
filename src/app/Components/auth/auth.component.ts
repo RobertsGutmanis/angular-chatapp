@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
       password: new FormControl('', Validators.required)
     })
     this.authService.errorSubject.subscribe({
-      next: (value: string): void=>{
+      next: (value: string): void => {
         this.authError = value
       }
     })

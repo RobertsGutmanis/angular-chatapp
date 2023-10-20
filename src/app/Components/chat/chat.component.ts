@@ -9,7 +9,7 @@ import {RoomsService} from "../../Services/rooms.service";
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit{
+export class ChatComponent implements OnInit {
   joinRoomGroup!: FormGroup;
   chatRoomGroup!: FormGroup;
   emptyJoin!: string;
@@ -19,10 +19,12 @@ export class ChatComponent implements OnInit{
   roomsImmutable!: any[];
   activeMessages!: any[];
   toggle: boolean = false;
+
   constructor(private authService: AuthService,
               private router: Router,
               private roomsService: RoomsService) {
   }
+
   ngOnInit(): void {
     this.roomsService.getCurrentUserData()
     this.joinRoomGroup = new FormGroup({
@@ -36,9 +38,9 @@ export class ChatComponent implements OnInit{
     this.roomsService.getAllRooms()
 
     this.roomsService.roomsSubject.subscribe({
-      next: (value): void =>{
+      next: (value): void => {
         this.roomsList = []
-        value.forEach((room: any): void=>{
+        value.forEach((room: any): void => {
           this.roomsList.push(room)
         })
         this.roomsImmutable = this.roomsList
@@ -59,14 +61,14 @@ export class ChatComponent implements OnInit{
     });
   }
 
-  onLogout(){
+  onLogout() {
     localStorage.clear()
     location.reload()
     this.router.navigate(['/'])
   }
 
   onJoin(): void {
-    if(this.joinRoomGroup.status!="VALID"){
+    if (this.joinRoomGroup.status != "VALID") {
       this.emptyJoin = "Can't join an empty room"
       return
     }
@@ -75,23 +77,23 @@ export class ChatComponent implements OnInit{
     this.joinRoomGroup.reset()
   }
 
-  onLeave(index: number): void{
+  onLeave(index: number): void {
     this.activeRoom = "noRoom"
     this.roomsService.leaveRoom(index);
   }
 
-  onActiveRoom(event: any): void{
+  onActiveRoom(event: any): void {
     this.activeRoom = event
     this.roomsService.getRoomMessages(event)
     this.toggle = false;
   }
 
-  onMessage(): void{
+  onMessage(): void {
     this.roomsService.sendMessage(this.activeRoom, this.chatRoomGroup.value.text, this.userCreds)
     this.chatRoomGroup.reset()
   }
 
-  onToggleMenu(): void{
+  onToggleMenu(): void {
     this.toggle = !this.toggle
     console.log(this.toggle)
   }

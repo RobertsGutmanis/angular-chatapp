@@ -1,25 +1,26 @@
 <div class="container">
   <div class="box">
     <div class="box-login">
-      <form class="form" (ngSubmit)="onSubmit()" [formGroup]="registerFormGroup" >
+      <form (ngSubmit)="onSubmit()" [formGroup]="registerFormGroup" class="form">
         <h3 class="title">Login</h3>
         <div class="form-group">
           <label class="label" for="email">Email:</label>
-          <input class="form-input" id="email" name="email" type="email" formControlName="email">
+          <input class="form-input" formControlName="email" id="email" name="email" type="email">
         </div>
         <div class="form-group">
           <label class="label" for="username">Username:</label>
-          <input class="form-input" id="username" name="username" type="text" formControlName="username">
+          <input class="form-input" formControlName="username" id="username" name="username" type="text">
         </div>
         <div class="form-group">
           <label class="label" for="password">Password:</label>
-          <input class="form-input" id="password" name="password" type="password" formControlName="password">
+          <input class="form-input" formControlName="password" id="password" name="password" type="password">
         </div>
         <div class="form-group">
           <label class="label" for="password_conf">Confirm Password:</label>
-          <input class="form-input" id="password_conf" name="password_conf" type="password" formControlName="password_conf">
+          <input class="form-input" formControlName="password_conf" id="password_conf" name="password_conf"
+                 type="password">
         </div>
-        <p class="error-message" *ngIf="authError">{{authError | formatError}}</p>
+        <p *ngIf="authError" class="error-message">{{authError | formatError}}</p>
         <input class="form-login" type="submit" value="Register">
         <a class="form-register" routerLink="/auth" type="button">Login</a>
       </form>

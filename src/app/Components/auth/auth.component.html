@@ -12,7 +12,7 @@
           <input class="form-input" formControlName="password" id="password" name="password" type="password">
         </div>
         <input class="form-login" type="submit" value="Login">
-        <p class="error-message" *ngIf="authError">{{authError | formatError}}</p>
+        <p *ngIf="authError" class="error-message">{{authError | formatError}}</p>
         <a class="form-register" routerLink="/register" type="button">Register</a>
       </form>
     </div>
