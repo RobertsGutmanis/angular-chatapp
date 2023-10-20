@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+$bg-color: #212529;
+*{
+    padding: 0;
+    margin: 0;
+    color: lightgray;
+    font-family: 'Poppins', sans-serif;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #343a40;
+    overflow: hidden;
+}
+.label{
+    color: white;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000000s ease-in-out 0s;
+    -webkit-text-fill-color: lightgray;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #212529;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #495057;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #343a40;
+}

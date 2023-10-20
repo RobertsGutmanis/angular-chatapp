@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="left-panel" [ngClass]="{'toggleMenu': !toggle}">
+    <div class="left-panel-user">
+      <div class="creds">
+        <div class="username">
+          Username: <span>{{userCreds.username}}</span>
+        </div>
+        <div class="email">
+          Email: <span>{{userCreds.email}}</span>
+        </div>
+      </div>
+      <input type="button" value="logout" (click)="onLogout()" class="btn btn-logout btn-logout-top">
+    </div>
+    <div class="left-panel-search">
+      <p>Search/join:</p>
+      <form class="left-panel-search-inputs" (ngSubmit)="onJoin()" [formGroup]="joinRoomGroup">
+        <div class="">
+          <input type="text" name="roomname" id="roomname" class="left-panel-input" formControlName="name" (input)="onSearchRoom($event)">
+          <input type="submit" class="btn btn-join btn-join-top" value="join">
+        </div>
+        <p class="error-text" *ngIf="emptyJoin">{{emptyJoin}}</p>
+      </form>
+    </div>
+    <div class="left-panel-rooms">
+      <div (click)="onActiveRoom(room)" class="room" *ngFor="let room of roomsList; let i = index">{{room}}
+        <input type="button" value="X" (click)="onLeave(i)" class="btn btn-logout">
+      </div>
+    </div>
+  </div>
+  <div class="chat" *ngIf="activeRoom!='noRoom'" [ngClass]="{'toggleMenu': toggle}">
+    <div class="chat-info">
+      {{activeRoom}}
+    </div>
+    <div class="chat-area">
+      <div class="messages" *ngFor="let message of activeMessages">
+        <div class="message" [ngClass]="{'message-active': userCreds.username===message.sender}">
+          <div class="message-sender">{{message.sender}}</div>
+          <div class="message-text">{{message.message}}</div>
+          <div class="message-date">{{message.date}}</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="chat-box" (ngSubmit)="onMessage()" [formGroup]="chatRoomGroup">
+      <input type="text" name="textmessage" id="textmessage" placeholder="Text message" class="text-input" formControlName="text">
+      <input type="submit" name="textsend" id="textsend" value="send" class="btn btn-join text-input-btn">
+    </form>
+  </div>
+  <div class="chat" *ngIf="activeRoom=='noRoom'"  [ngClass]="{'toggleMenu': toggle}">
+    <div class="chat-no-room">
+      <div class="chat-no-room-text">Join <span>a</span></div>
+      <div class="chat-no-room-text chat-no-room-text-bold">Room</div>
+      <div class="chat-no-room-text">To</div>
+      <div class="chat-no-room-text">Start</div>
+    </div>
+  </div>
+  <input value="menu" class="small-menu" type="button" (click)="onToggleMenu()">
+</div>
