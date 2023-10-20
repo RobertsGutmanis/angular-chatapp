@@ -23,12 +23,13 @@
       </form>
     </div>
     <div class="left-panel-rooms">
-      <div (click)="onActiveRoom(room)" *ngFor="let room of roomsList; let i = index" class="room">{{room}}
+      <div (click)="onActiveRoom(room)" *ngFor="let room of roomsList; let i = index" class="room">
+        {{room}}
         <input (click)="onLeave(i)" class="btn btn-logout" type="button" value="X">
       </div>
     </div>
   </div>
-  <div *ngIf="activeRoom!='noRoom'" [ngClass]="{'toggleMenu': toggle}" class="chat">
+  <div [ngClass]="{'toggleMenu': toggle}" *ngIf="activeRoom" class="chat">
     <div class="chat-info">
       {{activeRoom}}
     </div>
@@ -48,7 +49,7 @@
       <input class="btn btn-join text-input-btn" id="textsend" name="textsend" type="submit" value="send">
     </form>
   </div>
-  <div *ngIf="activeRoom=='noRoom'" [ngClass]="{'toggleMenu': toggle}" class="chat">
+  <div [ngClass]="{'toggleMenu': toggle}" *ngIf="!activeRoom"  class="chat">
     <div class="chat-no-room">
       <div class="chat-no-room-text">Join <span>a</span></div>
       <div class="chat-no-room-text chat-no-room-text-bold">Room</div>

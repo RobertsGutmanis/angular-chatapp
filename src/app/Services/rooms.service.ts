@@ -102,13 +102,12 @@ export class RoomsService {
     const roomKey: any[] = this.roomKeyPairs.filter((value: any): boolean => {
       return value.name == roomName
     })
-    // roomKey[0].key
     this.http.get(`https://angularcourse-b6e28-default-rtdb.europe-west1.firebasedatabase.app/rooms/${roomKey[0].key}/messages.json`)
       .subscribe({
         next: (messages: any): void => {
           const messagesArray: any[] = []
           for (let key in messages) {
-            messagesArray.push(messages[key])
+            messagesArray.unshift(messages[key])
           }
           this.messagesSubject.next(messagesArray)
         }

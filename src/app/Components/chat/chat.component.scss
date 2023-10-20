@@ -139,7 +139,10 @@
     //margin-bottom: 10px;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+  .no-room{
+    display: none !important;
   }
 
   &-box {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../Services/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
   emptyJoin!: string;
   roomsList: any[] = [];
   userCreds = JSON.parse(localStorage.getItem("user") ?? "")
-  activeRoom: string = "noRoom";
+  activeRoom: string = "";
   roomsImmutable!: any[];
   activeMessages!: any[];
   toggle: boolean = false;
@@ -78,11 +78,11 @@ export class ChatComponent implements OnInit {
   }
 
   onLeave(index: number): void {
-    this.activeRoom = "noRoom"
+    this.activeRoom = ""
     this.roomsService.leaveRoom(index);
   }
 
-  onActiveRoom(event: any): void {
+  onActiveRoom(event: string): void {
     this.activeRoom = event
     this.roomsService.getRoomMessages(event)
     this.toggle = false;
