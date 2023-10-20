@@ -9,6 +9,7 @@ import {AuthService} from "../../Services/auth.service";
 })
 export class AuthComponent implements OnInit {
   loginFormGroup!: FormGroup;
+  authError: string = "";
 
   constructor(private authService: AuthService) {
   }
@@ -17,6 +18,11 @@ export class AuthComponent implements OnInit {
     this.loginFormGroup = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
+    })
+    this.authService.errorSubject.subscribe({
+      next: (value: string): void=>{
+        this.authError = value
+      }
     })
   }
 

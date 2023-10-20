@@ -8,6 +8,7 @@ import {RegisterComponent} from './Components/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ChatComponent } from './Components/chat/chat.component';
+import { FormatErrorPipe } from './Pipes/format-error.pipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ChatComponent } from './Components/chat/chat.component';
     AppComponent,
     AuthComponent,
     RegisterComponent,
-    ChatComponent
+    ChatComponent,
+    FormatErrorPipe,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import {AuthService} from "../../Services/auth.service";
 })
 export class RegisterComponent implements OnInit{
   registerFormGroup!: FormGroup;
+  authError!: string;
 
   constructor(private authService: AuthService) {
   }
@@ -20,6 +21,11 @@ export class RegisterComponent implements OnInit{
       password: new FormControl('', Validators.required),
       password_conf: new FormControl('', Validators.required),
     })
+    this.authService.errorSubject.subscribe({
+      next: (error: string): void=>{
+        this.authError = error
+      }
+    })
   }
 
   onSubmit(): void {
@@ -28,7 +34,7 @@ export class RegisterComponent implements OnInit{
       console.log("registered")
       this.authService.auth({email: values.email, password: values.password}, "signUp", values.username)
     }else{
-      console.log("invalid")
+      this.authError = "PASSWORDS DON'T MATCH"
     }
   }
 }

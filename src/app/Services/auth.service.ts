@@ -3,16 +3,18 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Login} from '../Interfaces/login.interface';
 import {AuthResponse} from "../Interfaces/auth-response.interface";
 import {Router} from "@angular/router";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  errorSubject: Subject<string> = new Subject()
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  auth(creds: Login, action: string, username? :string): void {
+  auth(creds: Login, action: string, username? :string): void | boolean{
     this.http.post<AuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:${action}?key=AIzaSyBsnHIKuSg7k5-0Y6xRIka1q4q_8Ap7syI`, creds)
       .subscribe({
         next: (response: AuthResponse): void => {
@@ -24,7 +26,7 @@ export class AuthService {
           }
         },
         error: (error: HttpErrorResponse): void => {
-          console.error(error)
+          this.errorSubject.next(error.error.error.message)
         }
       })
   }

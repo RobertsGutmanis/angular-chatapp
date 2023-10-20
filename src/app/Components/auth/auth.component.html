@@ -3,15 +3,16 @@
     <div class="box-login">
       <form (ngSubmit)="onSubmit()" [formGroup]="loginFormGroup" class="form">
         <h3 class="title">Login</h3>
-        <div class="">
-          <label class="label" for="email">Email:</label><br>
+        <div class="form-group">
+          <label class="label" for="email">Email:</label>
           <input class="form-input" formControlName="email" id="email" name="email" type="email">
         </div>
-        <div class="">
-          <label class="label" for="password">Password:</label><br>
+        <div class="form-group">
+          <label class="label" for="password">Password:</label>
           <input class="form-input" formControlName="password" id="password" name="password" type="password">
         </div>
         <input class="form-login" type="submit" value="Login">
+        <p class="error-message" *ngIf="authError">{{authError | formatError}}</p>
         <a class="form-register" routerLink="/register" type="button">Register</a>
       </form>
     </div>

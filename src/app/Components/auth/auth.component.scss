@@ -61,6 +61,7 @@
   }
 
   &-input {
+    width: 75%;
     background-color: #495057;
     border-radius: 4px;
     height: 28px;
@@ -74,8 +75,20 @@
     }
   }
 }
-
-@media only screen and (max-width: 850px) {
+.error-message{
+  color: red;
+}
+.label{
+  width: 75%;
+  text-align: start;
+}
+.form-group{
+  align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (max-width: 800px) {
   .box {
     &-login {
       width: 100%;
