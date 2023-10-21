@@ -2,7 +2,7 @@ export interface UserData {
   email: string,
   username: string,
   localId: string,
-  rooms: {
+  rooms?: {
     name: string
   }[]
 }

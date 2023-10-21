@@ -4,6 +4,7 @@ import {Login} from '../Interfaces/login.interface';
 import {AuthResponse} from "../Interfaces/auth-response.interface";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
+import {UserData} from "../Interfaces/user-data.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AuthService {
   }
 
   getUser(token: string): void {
-    this.http.get(`https://angularcourse-b6e28-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="localId"&equalTo="${token}"`)
+    this.http.get<UserData>(`https://angularcourse-b6e28-default-rtdb.europe-west1.firebasedatabase.app/users.json?orderBy="localId"&equalTo="${token}"`)
       .subscribe({
         next: (value: any): void => {
           for (const key in value) {

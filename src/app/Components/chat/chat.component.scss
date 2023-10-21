@@ -72,6 +72,12 @@
   font-weight: bold;
   transition: all .3s;
 
+  &-leave{
+    border-radius: 0 4px 4px 0;
+    width: 15%;
+    padding: 15px 0;
+  }
+
   &-logout {
     background-color: #9d0208;
     height: 80%;
@@ -176,19 +182,19 @@
 }
 
 .room {
-  display: flex;
-  justify-content: space-between;
-  background-color: #495057;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 10px;
   margin: 15px 0;
-  box-shadow: 0px 0px 2px 0px black;
-  transition: all .3s;
-
-  &:hover {
-    transform: scale(1.01);
-    filter: brightness(90%);
+  width: 100%;
+  display: flex;
+  &-bar{
+    transition: all .3s;
+    padding: 10px;
+    border-radius: 4px 0 0 4px;
+    background-color: #495057;
+    width: 85%;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(90%);
+    }
   }
 }
 

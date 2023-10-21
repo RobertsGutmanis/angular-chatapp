@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from "../../Services/auth.service";
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RoomsService} from "../../Services/rooms.service";
+import {Messages} from "../../Interfaces/messages.interface";
 
 @Component({
   selector: 'app-chat',
@@ -13,16 +13,16 @@ export class ChatComponent implements OnInit {
   joinRoomGroup!: FormGroup;
   chatRoomGroup!: FormGroup;
   emptyJoin!: string;
-  roomsList: any[] = [];
+  roomsList: string[] = [];
   userCreds = JSON.parse(localStorage.getItem("user") ?? "")
   activeRoom: string = "";
-  roomsImmutable!: any[];
-  activeMessages!: any[];
+  roomsImmutable!: string[];
+  activeMessages!: Messages[];
   toggle: boolean = false;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private roomsService: RoomsService) {
+  constructor(
+    private router: Router,
+    private roomsService: RoomsService) {
   }
 
   ngOnInit(): void {
@@ -38,30 +38,30 @@ export class ChatComponent implements OnInit {
     this.roomsService.getAllRooms()
 
     this.roomsService.roomsSubject.subscribe({
-      next: (value): void => {
+      next: (value: string[]): void => {
         this.roomsList = []
-        value.forEach((room: any): void => {
+        value.forEach((room: string): void => {
           this.roomsList.push(room)
         })
         this.roomsImmutable = this.roomsList
       }
     })
+
     this.roomsService.messagesSubject.subscribe({
-      next: (value: any[]): void => {
+      next: (value: Messages[]): void => {
         this.activeMessages = value
       }
     })
   }
 
-
-  onSearchRoom(data: any): void {
+  onSearchRoom(data: Event): void {
     this.roomsList = this.roomsImmutable
-    this.roomsList = this.roomsList.filter((room: any): boolean => {
-      return room.includes(data.target.value);
+    this.roomsList = this.roomsList.filter((room: string): boolean => {
+      return room.includes((<HTMLInputElement>data.target).value);
     });
   }
 
-  onLogout() {
+  onLogout(): void {
     localStorage.clear()
     location.reload()
     this.router.navigate(['/'])
@@ -82,9 +82,13 @@ export class ChatComponent implements OnInit {
     this.roomsService.leaveRoom(index);
   }
 
+  getMessageInterval!: ReturnType<typeof setInterval>
   onActiveRoom(event: string): void {
+    clearInterval(this.getMessageInterval)
+    this.getMessageInterval = setInterval((): void=>{
+      this.roomsService.getRoomMessages(event)
+    }, 250)
     this.activeRoom = event
-    this.roomsService.getRoomMessages(event)
     this.toggle = false;
   }
 
@@ -94,7 +98,6 @@ export class ChatComponent implements OnInit {
   }
 
   onToggleMenu(): void {
-    this.toggle = !this.toggle
-    console.log(this.toggle)
+    this.toggle = !this.toggle;
   }
 }
